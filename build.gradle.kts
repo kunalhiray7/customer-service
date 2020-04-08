@@ -27,6 +27,10 @@ dependencies {
 	implementation("io.springfox:springfox-swagger-ui:2.9.2")
 	implementation("io.springfox:springfox-swagger2:2.9.2")
 
+	implementation("io.github.openfeign:feign-okhttp:9.3.1")
+	implementation("io.github.openfeign:feign-jackson:9.3.1")
+	implementation("io.github.openfeign:feign-slf4j:9.3.1")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
