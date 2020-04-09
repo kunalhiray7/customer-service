@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "53f00901-cf6c-4887-8750-816acda7af25",
+		"name": "customer-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Customer - Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8cf7777e-06cc-49b5-999f-7613b227c5d7",
+						"exec": [
+							"pm.test(\"POST should create the customer and return 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"POST should create the customer and response should have ID\", function () {",
+							"    var jsonData = pm.response.text();",
+							"    pm.expect(jsonData).to.include(\"id\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\"userId\" : 2 ,\r\"firstName\" : \"John\" ,\r\"lastName\" : \"Smith\" ,\r\"email\" : \"johnsmith@example.com\" ,\r\"phone\" : \"+49 123 456 78 679\"\r}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Create a customer by hitting POST /api/customers and expect response to be 201."
+			},
+			"response": []
+		},
+		{
+			"name": "Create customer - failed - 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cb7a92fa-2750-47e8-ab1a-8918a8c83c9c",
+						"exec": [
+							"pm.test(\"POST should return 404 when no user found\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"POST should have correct message when no user found\", function () {",
+							"    var jsonData = pm.response.text();",
+							"    pm.expect(jsonData).to.include(\"No user found for given id 5\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\"userId\" : 5 ,\r\"firstName\" : \"John\" ,\r\"lastName\" : \"Smith\" ,\r\"email\" : \"johnsmith@example.com\" ,\r\"phone\" : \"+49 123 456 78 679\"\r}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "It sbould return NOT_FOUND when no user found for given customer ID."
+			},
+			"response": []
+		},
+		{
+			"name": "GET by customer id - success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7316d010-e2b5-4bbe-9157-7b30414213bc",
+						"exec": [
+							"pm.test(\"GET by customer id should return 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    ",
+							"    pm.expect(jsonData).to.eql({",
+							"    \"id\": 1,",
+							"    \"userId\": 1,",
+							"    \"firstName\": \"John\",",
+							"    \"lastName\": \"Smith\",",
+							"    \"email\": \"johnsmith@example.com\",",
+							"    \"phone\": \"+49 123 456 78 910\"",
+							"});",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"1"
+					]
+				},
+				"description": "GET API to fetch the customer by id should return customer."
+			},
+			"response": []
+		},
+		{
+			"name": "GET by id - failed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bff76fe3-ef4f-4e93-9e20-1c2dd4762f49",
+						"exec": [
+							"pm.test(\"GET by id should return 404 when no customer found\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"GET by id should have correct message when no customer found\", function () {",
+							"    var jsonData = pm.response.text();",
+							"    pm.expect(jsonData).to.include(\"No customer found for given id 123456\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customers/123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"123456"
+					]
+				},
+				"description": "It should return NOT_FOUND with correct message when no customer found."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
