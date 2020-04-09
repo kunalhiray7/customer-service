@@ -31,6 +31,13 @@ dependencies {
 	implementation("io.github.openfeign:feign-jackson:9.3.1")
 	implementation("io.github.openfeign:feign-slf4j:9.3.1")
 
+	implementation("ch.qos.logback:logback-core:1.2.3")
+	implementation("ch.qos.logback:logback-classic:1.2.3")
+	implementation("net.logstash.logback:logstash-logback-encoder:4.11")
+
+	implementation("io.micrometer:micrometer-registry-prometheus")
+	implementation("io.micrometer:micrometer-core")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}

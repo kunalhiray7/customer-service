@@ -13,15 +13,16 @@ class UsersService(private val usersServiceClient: UsersServiceClient,
                    private val userServiceUrl: String) {
 
     companion object {
-        private val LOGGER = LoggerFactory.getLogger(UsersService::class.java)!!
+        private val logger = LoggerFactory.getLogger(UsersService::class.java)!!
     }
 
     fun getUserById(userId: Long): UserServiceResponse? {
+        logger.info("Calling user-service to fetch user for id: $userId")
         val uri = UriComponentsBuilder.newInstance().path("$userServiceUrl/api/users/$userId").build().toUri()
         return try {
             usersServiceClient.getUserById(uri)
         } catch (e: Throwable) {
-            LOGGER.info("Not able to fetch user with id $userId::", e)
+            logger.info("Not able to fetch user with id $userId::", e)
             null
         }
     }

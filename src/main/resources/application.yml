@@ -18,3 +18,33 @@ spring:
 users:
   service:
     url: http://localhost:8000
+
+logstash:
+  uri: 127.0.0.1:5044
+
+# Actuator
+management:
+  health:
+    mongo:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env,prometheus
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  info:
+    defaults:
+      enabled: true
+    git:
+      mode: full
+
