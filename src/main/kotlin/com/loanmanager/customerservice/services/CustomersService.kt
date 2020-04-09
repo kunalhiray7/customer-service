@@ -22,7 +22,9 @@ class CustomersService(private val customersRepository: CustomersRepository,
 
     @Throws(CustomerNotFound::class)
     fun getById(customerId: Long): CustomerResponse {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val customer = customersRepository.findById(customerId)
+                .orElseThrow { CustomerNotFound("No customer found for given id $customerId") }
+        return CustomerResponse.of(customer)
     }
 
 }

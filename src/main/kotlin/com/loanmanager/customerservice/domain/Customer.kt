@@ -13,17 +13,17 @@ data class Customer(
         val id: Long? = null,
 
         @get: NotNull
-        val userId: Long,
+        val userId: Long = -1L,
 
         @get: NotBlank
-        val firstName: String,
+        val firstName: String = "",
 
         @get: NotBlank
-        val lastName: String,
+        val lastName: String = "",
 
         @get: NotBlank
-        val email: String,
+        val email: String = "",
 
         @get: NotBlank
-        val phone: String
+        val phone: String = ""
 )
