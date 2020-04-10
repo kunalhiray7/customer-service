@@ -1,6 +1,6 @@
 package com.loanmanager.customerservice.utils
 
-import com.loanmanager.customerservice.utils.ObjectMapperUtil.Companion.getObjectMapper
+import com.loanmanager.customerservice.utils.ObjectMapperUtil.getObjectMapper
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 

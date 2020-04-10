@@ -2,7 +2,7 @@ package com.loanmanager.customerservice
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.loanmanager.customerservice.clients.UsersServiceClient
-import com.loanmanager.customerservice.utils.ObjectMapperUtil.Companion.getObjectMapper
+import com.loanmanager.customerservice.utils.ObjectMapperUtil.getObjectMapper
 import feign.Feign
 import feign.Logger
 import feign.jackson.JacksonDecoder
