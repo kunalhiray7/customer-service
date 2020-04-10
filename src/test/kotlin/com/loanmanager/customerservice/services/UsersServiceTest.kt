@@ -27,7 +27,7 @@ class UsersServiceTest {
     }
 
     @Test
-    fun `getUsers() should return the list of users for given users ids`() {
+    fun `getUserById() should return the user for given userId`() {
         val userId = 123L
         val user = UserServiceResponse(
                 id = userId,
@@ -45,7 +45,7 @@ class UsersServiceTest {
     }
 
     @Test
-    fun `getUsers() should return empty list if any error occurs while getting users`() {
+    fun `getUserById() should return null if any error occurs while getting user`() {
         val userId = 123L
         val uri = UriComponentsBuilder.newInstance().path("$userServiceUrl/api/users/$userId").build().toUri()
         doThrow(RuntimeException("Something went wrong")).`when`(usersServiceClient).getUserById(uri)
