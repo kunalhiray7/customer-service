@@ -42,3 +42,14 @@ However, this may not always work due to missing configuration and version misma
 * You can see the Grafana dashboard at `http://localhost:3000`.
 * The Grafana dashboard is configured with a prometheus dashboard. If it is not loaded by default, 
 please add the `datasource` again and refresh the dashboard.
+
+### Working with mock json-server
+* The mock `json-server` follows RESTful specification.
+* If you want to add new mock `user` you can hit `POST http://localhost:8000/api/users` with json body like-
+````json
+{
+    "email": "stevesmith@example.com",
+    "password": "steve@123",
+    "role": "ADMIN"
+}
+````
